@@ -261,16 +261,16 @@ function renderCharts(
     out += `rx="1" fill="${theme.accent}" opacity="0.85"/>\n`;
   }
 
-  // Hour labels: 0h, 6h, 12h, 18h
-  for (const h of [0, 6, 12, 18]) {
-    const lx = pad + h * barW;
-    out += `<text x="${lx.toFixed(1)}" y="${(hourlyBaseY + 12 * sy).toFixed(1)}" `;
-    out += `font-family="${FONT_MAIN}" font-size="${8 * sy}" fill="${theme.foregroundMuted}">${h}h</text>\n`;
+  // Hour labels: 0h, 6h, 12h, 18h, 23h
+  for (const h of [0, 6, 12, 18, 23]) {
+    const lx = pad + h * barW + barW / 2;
+    out += `<text x="${lx.toFixed(1)}" y="${(hourlyBaseY + 14 * sy).toFixed(1)}" `;
+    out += `font-family="${FONT_MAIN}" font-size="${9 * sy}" fill="${theme.foregroundMuted}" text-anchor="middle">${h}h</text>\n`;
   }
 
   // ── Right: stacked language bar + legend ──────────────────────────────────
   const rightX = pad + halfW + 30 * sx;
-  const langs = data.languages.filter(l => l.percentage >= 0.5).slice(0, 8);
+  const langs = data.languages.filter(l => l.percentage >= 1).slice(0, 8);
 
   out += `<text x="${rightX}" y="${sectionY - 6 * sy}" font-family="${FONT_MAIN}" `;
   out += `font-size="${11 * sy}" fill="${theme.foregroundMuted}">Languages</text>\n`;
@@ -346,7 +346,7 @@ function renderContributors(
 
     // Name
     out += `<text x="${pad}" y="${rowY + 14 * sy}" font-family="${FONT_MAIN}" `;
-    out += `font-size="${12 * sy}" fill="${theme.foreground}">${escapeXml(truncate(c.name, 22))}</text>\n`;
+    out += `font-size="${11 * sy}" fill="${theme.foreground}">${escapeXml(truncate(c.name, 30))}</text>\n`;
 
     // Bar
     const bx = pad + nameW;
@@ -359,6 +359,62 @@ function renderContributors(
     out += `<text x="${statX.toFixed(1)}" y="${rowY + 14 * sy}" `;
     out += `font-family="${FONT_MAIN}" font-size="${11 * sy}" fill="${theme.foregroundMuted}">`;
     out += `${escapeXml(formatShortNumber(c.commits))} (${c.percentage.toFixed(0)}%)</text>\n`;
+  }
+
+  return out;
+}
+
+function renderInsights(
+  data: AnalyzedData,
+  opts: PosterOptions,
+  sx: number,
+  sy: number,
+): string {
+  const { theme } = opts;
+  const FONT_MAIN = `'Segoe UI', system-ui, -apple-system, sans-serif`;
+
+  const sectionY = 680 * sy;
+  const pad = 40 * sx;
+
+  let out = '';
+
+  out += `<text x="${pad}" y="${sectionY - 6 * sy}" font-family="${FONT_MAIN}" `;
+  out += `font-size="${11 * sy}" fill="${theme.foregroundMuted}">Insights</text>\n`;
+
+  const WEEKDAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const insights: string[] = [];
+
+  if (data.busiestDay) {
+    insights.push(`Busiest day: ${data.busiestDay.date} (${formatStatNumber(data.busiestDay.count)} commits)`);
+  }
+  if (data.busiestHour) {
+    const h = data.busiestHour.hour;
+    const label = `${h.toString().padStart(2, '0')}:00`;
+    insights.push(`Most active hour: ${label} (${formatStatNumber(data.busiestHour.count)} commits)`);
+  }
+
+  // Busiest weekday
+  const maxWeekday = Math.max(...data.weekdayActivity);
+  if (maxWeekday > 0) {
+    const weekdayIdx = data.weekdayActivity.indexOf(maxWeekday);
+    insights.push(`Busiest weekday: ${WEEKDAY_NAMES[weekdayIdx]}`);
+  }
+
+  // Avg commits per active day
+  if (data.activeDays > 0) {
+    const avg = (data.totalCommits / data.activeDays).toFixed(1);
+    insights.push(`Avg commits/active day: ${avg}`);
+  }
+
+  for (let i = 0; i < insights.length && i < 4; i++) {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const ix = pad + col * (opts.width - pad * 2) / 2;
+    const iy = sectionY + 8 * sy + row * 20 * sy;
+
+    out += `<text x="${ix}" y="${iy}" font-family="${FONT_MAIN}" `;
+    out += `font-size="${10 * sy}" fill="${theme.foreground}">${escapeXml(insights[i]!)}</text>\n`;
   }
 
   return out;
@@ -406,6 +462,7 @@ export function generatePoster(data: AnalyzedData, opts: PosterOptions): string 
   svg += renderStats(data, opts, sx, sy);
   svg += renderCharts(data, opts, sx, sy);
   svg += renderContributors(data, opts, sx, sy);
+  svg += renderInsights(data, opts, sx, sy);
   svg += renderFooter(opts, sy);
 
   svg += `</svg>`;

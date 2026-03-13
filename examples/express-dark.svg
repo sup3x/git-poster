@@ -429,10 +429,11 @@
 <rect x="508.1" y="416.2" width="21.3" height="71.8" rx="1" fill="#58a6ff" opacity="0.85"/>
 <rect x="530.4" y="424.7" width="21.3" height="63.3" rx="1" fill="#58a6ff" opacity="0.85"/>
 <rect x="552.7" y="420.2" width="21.3" height="67.8" rx="1" fill="#58a6ff" opacity="0.85"/>
-<text x="40.0" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#8b949e">0h</text>
-<text x="173.8" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#8b949e">6h</text>
-<text x="307.5" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#8b949e">12h</text>
-<text x="441.3" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#8b949e">18h</text>
+<text x="51.1" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">0h</text>
+<text x="184.9" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">6h</text>
+<text x="318.6" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">12h</text>
+<text x="452.4" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">18h</text>
+<text x="563.9" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">23h</text>
 <text x="615" y="352" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">Languages</text>
 <rect x="615.0" y="366.0" width="360.8" height="12.0" fill="#f1e05a"/>
 <rect x="975.8" y="366.0" width="125.4" height="12.0" fill="#8b8b8b"/>
@@ -453,20 +454,25 @@
 <rect x="887.5" y="420.0" width="10" height="10" rx="2" fill="#563d7c"/>
 <text x="901.5" y="428.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#e6edf3">CSS <tspan fill="#8b949e">2%</tspan></text>
 <text x="40" y="502" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">Top Contributors</text>
-<text x="40" y="522" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="12" fill="#e6edf3">Douglas Christopher...</text>
+<text x="40" y="522" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#e6edf3">Douglas Christopher Wilson</text>
 <rect x="190.0" y="512.0" width="870.0" height="14.0" rx="2" fill="#58a6ff" opacity="0.85"/>
 <text x="1068.0" y="522" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">1,161 (46%)</text>
-<text x="40" y="554" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="12" fill="#e6edf3">TJ Holowaychuk</text>
+<text x="40" y="554" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#e6edf3">TJ Holowaychuk</text>
 <rect x="190.0" y="544.0" width="397.9" height="14.0" rx="2" fill="#3fb950" opacity="0.85"/>
 <text x="595.9" y="554" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">531 (21%)</text>
-<text x="40" y="586" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="12" fill="#e6edf3">Jonathan Ong</text>
+<text x="40" y="586" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#e6edf3">Jonathan Ong</text>
 <rect x="190.0" y="576.0" width="48.7" height="14.0" rx="2" fill="#d29922" opacity="0.85"/>
 <text x="246.7" y="586" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">65 (3%)</text>
-<text x="40" y="618" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="12" fill="#e6edf3">Roman Shtylman</text>
+<text x="40" y="618" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#e6edf3">Roman Shtylman</text>
 <rect x="190.0" y="608.0" width="39.7" height="14.0" rx="2" fill="#f85149" opacity="0.85"/>
 <text x="237.7" y="618" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">53 (2%)</text>
-<text x="40" y="650" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="12" fill="#e6edf3">Wes Todd</text>
+<text x="40" y="650" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#e6edf3">Wes Todd</text>
 <rect x="190.0" y="640.0" width="29.2" height="14.0" rx="2" fill="#bc8cff" opacity="0.85"/>
 <text x="227.2" y="650" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">39 (2%)</text>
+<text x="40" y="674" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e">Insights</text>
+<text x="40" y="688" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#e6edf3">Busiest day: 2012-04-26 (34 commits)</text>
+<text x="600" y="688" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#e6edf3">Most active hour: 03:00 (219 commits)</text>
+<text x="40" y="708" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#e6edf3">Busiest weekday: Wednesday</text>
+<text x="600" y="708" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#e6edf3">Avg commits/active day: 0.5</text>
 <text x="600" y="768" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#8b949e" text-anchor="middle">Generated with git-poster</text>
 </svg>

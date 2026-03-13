@@ -388,13 +388,13 @@
 <text x="70" y="209.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76">Last 52 weeks</text>
 <rect x="40.0" y="235.0" width="360.0" height="40.0" rx="6" ry="6" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
 <text x="52.0" y="249.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76">Commits</text>
-<text x="52.0" y="267.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1f2328">18</text>
+<text x="52.0" y="267.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1f2328">20</text>
 <rect x="420.0" y="235.0" width="360.0" height="40.0" rx="6" ry="6" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
 <text x="432.0" y="249.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76">Authors</text>
 <text x="432.0" y="267.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1f2328">1</text>
 <rect x="800.0" y="235.0" width="360.0" height="40.0" rx="6" ry="6" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
 <text x="812.0" y="249.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76">Files</text>
-<text x="812.0" y="267.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1f2328">29</text>
+<text x="812.0" y="267.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1f2328">30</text>
 <rect x="40.0" y="285.0" width="360.0" height="40.0" rx="6" ry="6" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
 <text x="52.0" y="299.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76">First Commit</text>
 <text x="52.0" y="317.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1f2328">Mar 13, 2026</text>
@@ -406,7 +406,7 @@
 <text x="812.0" y="317.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1f2328">1</text>
 <text x="40" y="352" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#656d76">Hourly Activity</text>
 <rect x="40.0" y="378.0" width="21.3" height="110.0" rx="1" fill="#0969da" opacity="0.85"/>
-<rect x="62.3" y="488.0" width="21.3" height="0.0" rx="1" fill="#0969da" opacity="0.85"/>
+<rect x="62.3" y="475.8" width="21.3" height="12.2" rx="1" fill="#0969da" opacity="0.85"/>
 <rect x="84.6" y="488.0" width="21.3" height="0.0" rx="1" fill="#0969da" opacity="0.85"/>
 <rect x="106.9" y="488.0" width="21.3" height="0.0" rx="1" fill="#0969da" opacity="0.85"/>
 <rect x="129.2" y="488.0" width="21.3" height="0.0" rx="1" fill="#0969da" opacity="0.85"/>
@@ -429,20 +429,21 @@
 <rect x="508.1" y="488.0" width="21.3" height="0.0" rx="1" fill="#0969da" opacity="0.85"/>
 <rect x="530.4" y="488.0" width="21.3" height="0.0" rx="1" fill="#0969da" opacity="0.85"/>
 <rect x="552.7" y="488.0" width="21.3" height="0.0" rx="1" fill="#0969da" opacity="0.85"/>
-<text x="40.0" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#656d76">0h</text>
-<text x="173.8" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#656d76">6h</text>
-<text x="307.5" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#656d76">12h</text>
-<text x="441.3" y="500.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="8" fill="#656d76">18h</text>
+<text x="51.1" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76" text-anchor="middle">0h</text>
+<text x="184.9" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76" text-anchor="middle">6h</text>
+<text x="318.6" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76" text-anchor="middle">12h</text>
+<text x="452.4" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76" text-anchor="middle">18h</text>
+<text x="563.9" y="502.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="9" fill="#656d76" text-anchor="middle">23h</text>
 <text x="615" y="352" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#656d76">Languages</text>
-<rect x="615.0" y="366.0" width="263.1" height="12.0" fill="#3178c6"/>
-<rect x="878.1" y="366.0" width="150.3" height="12.0" fill="#8b8b8b"/>
-<rect x="1028.4" y="366.0" width="56.4" height="12.0" fill="#083fa1"/>
-<rect x="1084.8" y="366.0" width="56.4" height="12.0" fill="#292929"/>
-<rect x="1141.2" y="366.0" width="18.8" height="12.0" fill="#cb171e"/>
+<rect x="615.0" y="366.0" width="254.3" height="12.0" fill="#3178c6"/>
+<rect x="869.3" y="366.0" width="163.5" height="12.0" fill="#8b8b8b"/>
+<rect x="1032.8" y="366.0" width="54.5" height="12.0" fill="#083fa1"/>
+<rect x="1087.3" y="366.0" width="54.5" height="12.0" fill="#292929"/>
+<rect x="1141.8" y="366.0" width="18.2" height="12.0" fill="#cb171e"/>
 <rect x="615.0" y="384.0" width="10" height="10" rx="2" fill="#3178c6"/>
-<text x="629.0" y="392.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#1f2328">TypeScript <tspan fill="#656d76">48%</tspan></text>
+<text x="629.0" y="392.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#1f2328">TypeScript <tspan fill="#656d76">47%</tspan></text>
 <rect x="887.5" y="384.0" width="10" height="10" rx="2" fill="#8b8b8b"/>
-<text x="901.5" y="392.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#1f2328">Other <tspan fill="#656d76">28%</tspan></text>
+<text x="901.5" y="392.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#1f2328">Other <tspan fill="#656d76">30%</tspan></text>
 <rect x="615.0" y="402.0" width="10" height="10" rx="2" fill="#083fa1"/>
 <text x="629.0" y="410.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#1f2328">Markdown <tspan fill="#656d76">10%</tspan></text>
 <rect x="887.5" y="402.0" width="10" height="10" rx="2" fill="#292929"/>
@@ -450,8 +451,13 @@
 <rect x="615.0" y="420.0" width="10" height="10" rx="2" fill="#cb171e"/>
 <text x="629.0" y="428.0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#1f2328">YAML <tspan fill="#656d76">3%</tspan></text>
 <text x="40" y="502" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#656d76">Top Contributors</text>
-<text x="40" y="522" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="12" fill="#1f2328">Kerim Gülen</text>
+<text x="40" y="522" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#1f2328">Kerim Gülen</text>
 <rect x="190.0" y="512.0" width="870.0" height="14.0" rx="2" fill="#0969da" opacity="0.85"/>
-<text x="1068.0" y="522" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#656d76">18 (100%)</text>
+<text x="1068.0" y="522" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#656d76">20 (100%)</text>
+<text x="40" y="674" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#656d76">Insights</text>
+<text x="40" y="688" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#1f2328">Busiest day: 2026-03-13 (20 commits)</text>
+<text x="600" y="688" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#1f2328">Most active hour: 00:00 (18 commits)</text>
+<text x="40" y="708" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#1f2328">Busiest weekday: Friday</text>
+<text x="600" y="708" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="10" fill="#1f2328">Avg commits/active day: 20.0</text>
 <text x="600" y="768" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="11" fill="#656d76" text-anchor="middle">Generated with git-poster</text>
 </svg>
