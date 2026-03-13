@@ -162,6 +162,11 @@ function renderHeatmap(
     }
   }
 
+  // "Last 52 weeks" note
+  const noteY = heatY + 7 * STEP + 8 * sy;
+  out += `<text x="${heatX}" y="${noteY.toFixed(1)}" font-family="${FONT_MAIN}" `;
+  out += `font-size="${9 * sy}" fill="${theme.foregroundMuted}">Last 52 weeks</text>\n`;
+
   return out;
 }
 
@@ -177,7 +182,7 @@ function renderStats(
   const sectionY = 235 * sy;
   const pad = 40 * sx;
   const cardW = (opts.width - pad * 2 - 20 * sx * 2) / 3;
-  const cardH = 48 * sy;
+  const cardH = 40 * sy;
   const cardRx = 6;
 
   const cards: Array<{ label: string; value: string }> = [
@@ -202,16 +207,16 @@ function renderStats(
     out += `rx="${cardRx}" ry="${cardRx}" fill="${theme.cardBackground}" `;
     out += `stroke="${theme.border}" stroke-width="1"/>\n`;
 
-    const labelY = cy + 16 * sy;
-    const valueY = cy + 36 * sy;
+    const labelY = cy + 14 * sy;
+    const valueY = cy + 32 * sy;
     const textX = cx + 12 * sx;
 
     out += `<text x="${textX.toFixed(1)}" y="${labelY.toFixed(1)}" `;
-    out += `font-family="${FONT_MAIN}" font-size="${10 * sy}" `;
+    out += `font-family="${FONT_MAIN}" font-size="${9 * sy}" `;
     out += `fill="${theme.foregroundMuted}">${cards[i]!.label}</text>\n`;
 
     out += `<text x="${textX.toFixed(1)}" y="${valueY.toFixed(1)}" `;
-    out += `font-family="${FONT_MAIN}" font-size="${16 * sy}" font-weight="600" `;
+    out += `font-family="${FONT_MAIN}" font-size="${18 * sy}" font-weight="700" `;
     out += `fill="${theme.foreground}">${escapeXml(cards[i]!.value)}</text>\n`;
   }
 
@@ -256,9 +261,16 @@ function renderCharts(
     out += `rx="1" fill="${theme.accent}" opacity="0.85"/>\n`;
   }
 
+  // Hour labels: 0h, 6h, 12h, 18h
+  for (const h of [0, 6, 12, 18]) {
+    const lx = pad + h * barW;
+    out += `<text x="${lx.toFixed(1)}" y="${(hourlyBaseY + 12 * sy).toFixed(1)}" `;
+    out += `font-family="${FONT_MAIN}" font-size="${8 * sy}" fill="${theme.foregroundMuted}">${h}h</text>\n`;
+  }
+
   // ── Right: stacked language bar + legend ──────────────────────────────────
   const rightX = pad + halfW + 30 * sx;
-  const langs = data.languages.slice(0, 8);
+  const langs = data.languages.filter(l => l.percentage >= 0.5).slice(0, 8);
 
   out += `<text x="${rightX}" y="${sectionY - 6 * sy}" font-family="${FONT_MAIN}" `;
   out += `font-size="${11 * sy}" fill="${theme.foregroundMuted}">Languages</text>\n`;
@@ -326,7 +338,7 @@ function renderContributors(
   for (let i = 0; i < contributors.length; i++) {
     const c = contributors[i]!;
     const rowY = sectionY + i * 32 * sy;
-    const nameW = 100 * sx;
+    const nameW = 150 * sx;
     const barW = (c.commits / maxCommits) * (barMaxW - nameW);
     const barH = 14 * sy;
     const barY = rowY + 4 * sy;
@@ -334,7 +346,7 @@ function renderContributors(
 
     // Name
     out += `<text x="${pad}" y="${rowY + 14 * sy}" font-family="${FONT_MAIN}" `;
-    out += `font-size="${12 * sy}" fill="${theme.foreground}">${escapeXml(truncate(c.name, 14))}</text>\n`;
+    out += `font-size="${12 * sy}" fill="${theme.foreground}">${escapeXml(truncate(c.name, 22))}</text>\n`;
 
     // Bar
     const bx = pad + nameW;

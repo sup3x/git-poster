@@ -9,6 +9,12 @@
 
 A zero-config CLI that parses your Git log and renders a contribution heatmap poster as an SVG or PNG — no account required, fully local.
 
+<p align="center">
+  <img src="examples/express-dark.svg" alt="Express.js poster example" width="100%">
+  <br>
+  <sub>Express.js — generated with <code>npx git-poster --repo express --theme dark</code></sub>
+</p>
+
 ---
 
 ## Installation
