@@ -1,0 +1,37 @@
+{
+  "name": "git-poster",
+  "version": "1.0.0",
+  "description": "Turn your Git history into a beautiful poster",
+  "keywords": ["git", "visualization", "poster", "svg", "cli", "commit-history", "contribution-graph", "developer-tools"],
+  "author": "Kerim Gulen",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/sup3x/git-poster.git" },
+  "bin": { "git-poster": "./dist/index.js" },
+  "files": ["dist"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "ora": "^8.1.0",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "peerDependencies": { "sharp": ">=0.33.0" },
+  "peerDependenciesMeta": { "sharp": { "optional": true } }
+}
