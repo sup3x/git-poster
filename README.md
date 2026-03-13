@@ -11,10 +11,40 @@ A zero-config CLI that parses your Git log and renders a contribution heatmap po
 
 ---
 
+## Installation
+
+**Run directly (no install needed):**
+```bash
+npx git-poster
+```
+
+**Install globally:**
+```bash
+npm install -g git-poster
+git-poster
+```
+
+**Install locally in a project:**
+```bash
+npm install --save-dev git-poster
+npx git-poster
+```
+
+**PNG support** (optional):
+```bash
+npm install -g sharp
+git-poster --png
+```
+
+> Requires Node.js 18 or later.
+
+---
+
 ## Quick Start
 
 ```bash
-npx git-poster
+cd your-repo
+git-poster
 ```
 
 That's it. Run from any Git repository and get `git-poster.svg` in the current directory.
