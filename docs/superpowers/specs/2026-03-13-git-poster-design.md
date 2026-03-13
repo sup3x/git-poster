@@ -220,15 +220,18 @@ Pure function. No I/O.
 - Groups commits by day (YYYY-MM-DD key) for heatmap
 - Groups commits by hour (0-23) for hourly activity chart
 - Groups commits by weekday (0-6) for weekly distribution
-- Maps file extensions to language names using `EXTENSION_MAP`; unmapped extensions go into "Other"
+- Maps file extensions to language names using `EXTENSION_MAP`; unmapped extensions and extensionless files (e.g., `Makefile`, `Dockerfile`, `LICENSE`) go into "Other"
 - Calculates top 5 contributors by commit count
 - Calculates `activeDays`: calendar days between first and last commit dates (inclusive). For a single commit, `activeDays = 1`. For 0 commits, `activeDays = 0`.
 - Finds busiest day and busiest hour. Returns `null` for both when there are 0 commits.
-- `totalFiles`: count of entries from `GitData.files` (sum of all `FileStat.count` values)
+- `totalFiles`: total number of lines from `git ls-files` (i.e., total tracked file count). This may differ from the sum of `LanguageStat` counts because extensionless files go into "Other."
+
+**Timezone handling:** All commit dates are parsed in UTC. `simple-git` log should use `--date=iso-strict` to get ISO 8601 dates, then parse them into UTC Date objects. This ensures deterministic output regardless of the machine's local timezone.
 
 **Edge cases:**
 - **0 commits:** `busiestDay = null`, `busiestHour = null`, `activeDays = 0`, all activity arrays are zeros, `languages` and `topContributors` are empty arrays
 - **1 commit:** `activeDays = 1`, heatmap has exactly one colored cell
+- **Merge-only repos:** Because `--no-merges` is used, a repo with only merge commits will result in 0 non-merge commits. This triggers the "no commits" error. This is expected — the poster visualizes direct contributions, not merge activity.
 
 **Extension to language mapping:**
 
@@ -283,8 +286,10 @@ Pure function. Returns SVG string.
 
 **Layout (1200x800 default, top to bottom):**
 
-1. **Header** (y: 0-70) — Repo name (left), "git-poster" branding (right, muted), description below name
-2. **Heatmap** (y: 70-230) — GitHub-style contribution graph. 52 weeks × 7 days grid. Each cell: 12×12px, 3px gap. Color intensity by commit count (5 levels from theme.heatmap). **Time anchor:** last commit date is the rightmost column; grid extends 52 weeks backwards. If `--since`/`--until` narrows the window to fewer than 52 weeks, render only the available weeks (grid shrinks horizontally). **Level thresholds:** divide max daily commit count into 4 equal quartiles — level 0 = no commits (heatmap[0]), level 1 = 1–Q1, level 2 = Q1+1–Q2, level 3 = Q2+1–Q3, level 4 = Q3+1–max (heatmap[4]). If max is 0, all cells are level 0.
+All Y coordinates below are for the default 800px height. When `--height` differs from 800, scale all Y values proportionally (`y * (height / 800)`). When `--width` differs from 1200, scale all X values and widths proportionally (`x * (width / 1200)`). The SVG uses `viewBox="0 0 {width} {height}"` so the coordinate system always matches the actual dimensions.
+
+1. **Header** (y: 0-70) — Repo name (left, max 40 chars, truncate with "..." if longer), "git-poster" branding (right, muted), description below name (max 80 chars, truncate with "...")
+2. **Heatmap** (y: 70-230) — GitHub-style contribution graph. 52 weeks x 7 days grid. Each cell: 12x12px, 3px gap. Color intensity by commit count (5 levels from theme.heatmap). Includes Mon/Wed/Fri labels on the left side and month abbreviation labels (Jan, Feb, ...) along the top. **Time anchor:** last commit date is the rightmost column; grid extends 52 weeks backwards. If `--since`/`--until` narrows the window to fewer than 52 weeks, render only the available weeks — left-aligned within the heatmap area, with empty space on the right. **Level thresholds:** divide max daily commit count into 4 equal quartiles — level 0 = no commits (heatmap[0]), level 1 = 1-Q1, level 2 = Q1+1-Q2, level 3 = Q2+1-Q3, level 4 = Q3+1-max (heatmap[4]). If max is 0, all cells are level 0.
 3. **Stats Cards** (y: 230-350) — Two rows of 3 cards each:
    - Row 1: Commits, Authors, Files
    - Row 2: First Commit, Last Commit, Active Days
@@ -292,7 +297,7 @@ Pure function. Returns SVG string.
 4. **Charts** (y: 350-500) — Two-column layout:
    - Left: Hourly Activity (24-bar vertical chart)
    - Right: Language Breakdown (horizontal stacked bar with legend)
-5. **Contributors** (y: 500-700) — Top 5 contributors with horizontal bar chart
+5. **Contributors** (y: 500-700) — Top 5 contributors with horizontal bar chart. When `--author` filters to a single contributor, show that one contributor without the bar chart — display as "Filtered by: {author}" with their commit count.
 6. **Footer** (y: 750-800) — "Generated with git-poster" text, muted
 
 **Note:** The y:700-750 range is padding/breathing room between contributors and footer.
@@ -302,7 +307,8 @@ Pure function. Returns SVG string.
 - Monospace: `font-family="'SF Mono', 'Fira Code', 'Cascadia Code', monospace"`
 - All rects with `rx="8"` for rounded corners
 - 24px spacing between sections
-- Numbers formatted with commas (1,247) or short form (1.2k)
+- Number formatting: values < 10,000 use commas (e.g., `1,247`); values >= 10,000 use short form (e.g., `12.3k`, `1.2M`). Stat cards always show exact comma-formatted values.
+- **XML escaping:** All text content in SVG (repo name, description, author names, commit messages) must escape `&` → `&amp;`, `<` → `&lt;`, `>` → `&gt;`, `"` → `&quot;`, `'` → `&apos;`
 - Valid XML: proper `<?xml version="1.0" encoding="UTF-8"?>` declaration, `xmlns="http://www.w3.org/2000/svg"`, viewBox attribute
 
 ### themes.ts — Color Themes
@@ -342,9 +348,11 @@ Pure function. Returns SVG string.
 `chartColors` are used as fallback palette for the language breakdown chart when `LANGUAGE_COLORS` doesn't have a mapping. Languages are assigned colors from `LANGUAGE_COLORS` first, then from `chartColors` in order for any remaining.
 
 ```typescript
-export function getTheme(name: string): Theme
-export function getThemeNames(): string[]
+export function getTheme(name: string): Theme  // throws Error if name is not a valid theme
+export function getThemeNames(): string[]       // returns ['dark', 'light', 'midnight', 'forest', 'ocean']
 ```
+
+`getTheme` throws an `Error` with the message from the error table when the theme name is invalid. The CLI layer catches this and formats it for the user.
 
 ---
 
@@ -397,8 +405,8 @@ export async function saveSvg(svg: string, outputPath: string): Promise<void>
 export async function savePng(svg: string, outputPath: string, scale?: number): Promise<void>
 ```
 
-- SVG: write string to file (UTF-8 encoding)
-- PNG: dynamic `import('sharp')`, convert SVG buffer to PNG. Default `scale = 2` (2x resolution for crisp output).
+- SVG: write string to file (UTF-8 encoding). Create intermediate directories recursively if they don't exist (`fs.mkdirSync(dir, { recursive: true })`).
+- PNG: dynamic `import('sharp')`, convert SVG buffer to PNG. Default `scale = 2` (2x resolution for crisp output). Same recursive directory creation.
 - If sharp not installed and `--png` requested: friendly error message suggesting `npm install -g sharp`
 
 ---
@@ -439,6 +447,7 @@ git-poster [options]
 - **`--quiet` + `--stats-only` conflict:** If both are specified, error with: "Cannot use --quiet and --stats-only together."
 - **`--png` without `-o`:** Default output filename becomes `git-poster.png` instead of `git-poster.svg`
 - **`--png` with `-o` ending in `.svg`:** Respect the user's `-o` path but change extension to `.png`
+- **`--png` + `--stats-only`:** `--stats-only` takes precedence — no file output is produced, `--png` is silently ignored
 
 ---
 
@@ -461,10 +470,9 @@ No stack traces. Every error has a descriptive message.
 ## Performance
 
 - Large repos (10k+ commits): must complete in seconds
-- `simple-git` log with `--max-count` as safety valve for enormous repos
-- Default: analyze all commits. If repo has > 50,000 commits, default to last 1 year with warning:
-  `"Repository has >50,000 commits. Analyzing last 1 year only. Use --since to override."`
+- **50k commit guard:** Before fetching full log, run `git rev-list --count HEAD` (or `--count --all` when no branch specified) to get total commit count. If count > 50,000 and user has not provided `--since`, automatically add `--since` for 1 year ago and print warning to stderr: `"Repository has >50,000 commits. Analyzing last 1 year only. Use --since to override."`
 - When `--since`/`--until` are specified by user, they always take precedence over the 50k auto-limit
+- No separate `--max-count` flag — the 50k guard with date-based fallback is the only performance mechanism
 
 ---
 
