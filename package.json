@@ -16,10 +16,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sup3x/git-poster.git"
+    "url": "git+https://github.com/sup3x/git-poster.git"
   },
   "bin": {
-    "git-poster": "./dist/index.js"
+    "git-poster": "dist/index.js"
   },
   "files": [
     "dist"
