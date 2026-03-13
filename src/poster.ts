@@ -382,7 +382,6 @@ export function generatePoster(data: AnalyzedData, opts: PosterOptions): string 
 
   svg += `<?xml version="1.0" encoding="UTF-8"?>\n`;
   svg += `<svg xmlns="http://www.w3.org/2000/svg" `;
-  svg += `xmlns:xlink="http://www.w3.org/1999/xlink" `;
   svg += `width="${width}" height="${height}" `;
   svg += `viewBox="0 0 ${width} ${height}" `;
   svg += `font-family="${FONT_MAIN}">\n`;

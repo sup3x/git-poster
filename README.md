@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/git-poster.svg?style=flat-square)](https://www.npmjs.com/package/git-poster)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/sup3x/git-poster/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/sup3x/git-poster/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/sup3x/git-poster/ci.yml?branch=master&style=flat-square&label=CI)](https://github.com/sup3x/git-poster/actions)
 [![Node >=18](https://img.shields.io/node/v/git-poster.svg?style=flat-square)](https://nodejs.org)
 
 A zero-config CLI that parses your Git log and renders a contribution heatmap poster as an SVG or PNG — no account required, fully local.
@@ -27,7 +27,7 @@ That's it. Run from any Git repository and get `git-poster.svg` in the current d
 - **SVG and PNG output** — crisp at any resolution; PNG via optional `sharp`
 - **Zero config** — sensible defaults, works out of the box
 - **Flexible filters** — by author, branch, date range
-- **Terminal summary** — commit stats printed to stdout before the file is written
+- **Terminal summary** — commit stats printed to stderr before the file is written
 - **Requires only Node 18+** — no external dependencies beyond npm
 
 ---
@@ -80,7 +80,7 @@ npx git-poster --repo ~/projects/myapp --branch develop --author "Kerim Gulen"
 | `-o, --output <file>` | Output file path | `git-poster.svg` |
 | `--png` | Export as PNG (requires `sharp`) | — |
 | `--theme <name>` | Color theme | `dark` |
-| `--branch <name>` | Specific branch | current branch |
+| `--branch <name>` | Specific branch | all branches |
 | `--since <date>` | Start date (`YYYY-MM-DD`) | — |
 | `--until <date>` | End date (`YYYY-MM-DD`) | — |
 | `--author <name>` | Filter commits by author name | — |
@@ -118,7 +118,7 @@ CLI (commander)
        └─ analyzer               — aggregate by day, compute heatmap buckets
   └─ Output
        ├─ poster (SVG builder)   — render contribution grid + metadata
-       ├─ terminal (chalk)       — print stats table to stdout
+       ├─ terminal (chalk)       — print stats table to stderr
        └─ export (sharp)         — optional raster conversion to PNG
 ```
 
